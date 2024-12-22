@@ -22,7 +22,7 @@ public class API1Test {
                 .body("count", Matchers.equalTo(1302),
                         "results.name", Matchers.hasItems("bulbasaur", "ivysaur"));
 
-        System.out.println("Ответ: " + response.getBody().asString());
+        System.out.println("Ответ: " + response.getBody().asPrettyString());
 
         System.out.println("Запрос успешно выполнен.");
     }
@@ -36,9 +36,10 @@ public class API1Test {
 
         response.then()
                 .statusCode(200)
-                .body("next", Matchers.equalTo("https://pokeapi.co/api/v2/pokemon?offset=40&limit=20"),
+                .body("previous", Matchers.equalTo("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"),
+                        "next", Matchers.equalTo("https://pokeapi.co/api/v2/pokemon?offset=40&limit=20"),
                         "results.name", Matchers.hasItems("spearow", "wigglytuff"));
 
-        System.out.println("Ответ: " + response.getBody().asPrettyString());
+        System.out.println("Ответ: " + response.getBody().asString());
     }
 }
